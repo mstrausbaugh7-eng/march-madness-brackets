@@ -67,6 +67,7 @@ export default function BracketEntry({ player }) {
   }
 
   const handlePick = (region, round, localSlot, team) => {
+    if (isLocked) return
     const globalSlot = getGlobalSlot(region, round, localSlot)
     const key = `${round}-${globalSlot}`
 
@@ -163,6 +164,10 @@ export default function BracketEntry({ player }) {
     return score
   }
 
+  // Lock picks at noon ET on March 19 2026
+  const LOCK_TIME = new Date("2026-03-19T12:00:00-04:00")
+  const isLocked = new Date() >= LOCK_TIME
+
   const totalPicks = Object.keys(picks).length
   const maxPicks = 63
   const score = calcScore()
@@ -180,10 +185,12 @@ export default function BracketEntry({ player }) {
             {hasResults && <span className="current-score">Score: {score} pts</span>}
           </div>
         </div>
+        {isLocked && <div className="lock-banner">🔒 Picks locked — good luck!</div>}
         <button
           className={`save-btn ${saved ? 'saved' : ''}`}
           onClick={savePicks}
-          disabled={saving}
+          disabled={saving || isLocked}
+          style={isLocked ? {display:'none'} : {}}
         >
           {saving ? 'Saving...' : saved ? '✓ Saved!' : 'Save Picks'}
         </button>

@@ -761,3 +761,24 @@ body {
 
   .round-col { width: 150px; }
 }
+
+.input-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 420px;
+  margin: 0 auto 0.75rem;
+}
+
+/* Lock banner */
+.lock-banner {
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
