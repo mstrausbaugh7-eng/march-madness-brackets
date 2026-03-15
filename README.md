@@ -111,7 +111,7 @@ npm run dev
 2. Enter your name to create your bracket and enter the family code
 3. Pick winners for each round — start with Round of 64, work through to the Championship
 4. Hit **Save Picks** when done
-5. Picks can be updated any time before the tournament starts
+5. Picks can be updated any time before the tournament starts - locks on 19 March at noon EDT
 
 ### You (Admin)
 1. On the home page, click the small dot `●` in the footer **5 times** to unlock Admin mode
@@ -143,4 +143,4 @@ npm run dev
 ---
 
 ## Customizing Teams
-Edit `src/lib/teams.js` to update the bracket with the actual 2025 tournament seedings when they're announced on Selection Sunday (March 16).
+Edit `src/lib/teams.js` to update the bracket with the actual 2026 tournament seedings when they're announced on Selection Sunday (March 15).
