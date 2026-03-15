@@ -37,7 +37,7 @@ export default function App() {
             <span className="logo-bracket">[</span>
             <span className="logo-text">MADNESS</span>
             <span className="logo-bracket">]</span>
-            <span className="logo-year">2025</span>
+            <span className="logo-year">2026</span>
           </div>
           <nav className="header-nav">
             <button
@@ -95,7 +95,7 @@ export default function App() {
       </main>
 
       <footer className="app-footer">
-        <p>Family Bracket Challenge 2025 · <span className="secret-admin" onClick={() => { setAdminMode(true); setView('admin') }}>●</span></p>
+        <p>Family Bracket Challenge 2026 · <span className="secret-admin" onClick={() => { setAdminMode(true); setView('admin') }}>●</span></p>
       </footer>
     </div>
   )
