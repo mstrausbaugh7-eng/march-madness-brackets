@@ -1,4 +1,4 @@
-# 🏀 March Madness 2025 — Family Bracket Challenge
+# 🏀 March Madness 2026 — Family Bracket Challenge
 
 A fast, mobile-friendly bracket game for your family. Built with React + Vite, hosted free on GitHub Pages, powered by Supabase.
 
@@ -12,7 +12,7 @@ A fast, mobile-friendly bracket game for your family. Built with React + Vite, h
 2. Create a new project (name it anything, remember the database password)
 3. Once created, go to **SQL Editor** and run this:
 
-```sql
+sql
 -- Players
 create table players (
   id uuid default gen_random_uuid() primary key,
@@ -49,19 +49,19 @@ alter table results enable row level security;
 create policy "Allow all" on players for all using (true) with check (true);
 create policy "Allow all" on picks for all using (true) with check (true);
 create policy "Allow all" on results for all using (true) with check (true);
-```
+
 
 4. Go to **Settings → API** and copy:
    - **Project URL** → your `VITE_SUPABASE_URL`
    - **anon / public key** → your `VITE_SUPABASE_ANON_KEY`
 
----
+
 
 ### 2. Configure the App (2 min)
 
-```bash
+bash
 cp .env.example .env.local
-```
+
 
 Edit `.env.local` and paste your Supabase values.
 
@@ -71,23 +71,23 @@ Edit `.env.local` and paste your Supabase values.
 
 1. Create a new GitHub repo (e.g. `march-madness-brackets`)
 2. In `vite.config.js`, update the base path to match your repo name:
-   ```js
+   js
    base: '/march-madness-brackets/',  // ← your repo name here
-   ```
+   
 3. In `package.json`, update the homepage if needed
 4. Push code to GitHub:
-   ```bash
+   bash
    git init
    git add .
    git commit -m "initial commit"
    git remote add origin https://github.com/YOUR_USERNAME/march-madness-brackets.git
    git push -u origin main
-   ```
+   
 5. Install dependencies and deploy:
-   ```bash
+   bash
    npm install
    npm run deploy
-   ```
+   
 6. In GitHub: **Settings → Pages** → set source to `gh-pages` branch
 
 Your app will be live at:
@@ -97,10 +97,10 @@ Your app will be live at:
 
 ## Running Locally
 
-```bash
+bash
 npm install
 npm run dev
-```
+
 
 ---
 
@@ -108,7 +108,7 @@ npm run dev
 
 ### Family Members
 1. Visit the URL
-2. Enter your name to create your bracket
+2. Enter your name to create your bracket and enter the family code
 3. Pick winners for each round — start with Round of 64, work through to the Championship
 4. Hit **Save Picks** when done
 5. Picks can be updated any time before the tournament starts
