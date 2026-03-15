@@ -1,19 +1,25 @@
 import { useState } from 'react'
 import { supabase } from '../lib/supabase'
 
+const JOIN_CODE = 'Clouse'
+
 export default function Home({ onJoin, player, setView, onEnableAdmin }) {
   const [name, setName] = useState('')
+  const [code, setCode] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [adminClick, setAdminClick] = useState(0)
 
   const handleSubmit = async () => {
     if (!name.trim()) return
+    if (code.trim().toLowerCase() !== JOIN_CODE.toLowerCase()) {
+      setError('Wrong join code — ask the commissioner! 🏀')
+      return
+    }
     setLoading(true)
     setError('')
 
     try {
-      // Check if player exists
       let { data: existing } = await supabase
         .from('players')
         .select('*')
@@ -25,7 +31,6 @@ export default function Home({ onJoin, player, setView, onEnableAdmin }) {
         return
       }
 
-      // Create new player
       const { data: newPlayer, error: insertError } = await supabase
         .from('players')
         .insert({ name: name.trim() })
@@ -66,7 +71,7 @@ export default function Home({ onJoin, player, setView, onEnableAdmin }) {
               <span className="title-march">MARCH</span>
               <span className="title-madness">MADNESS</span>
             </h1>
-            <p className="hero-subtitle">Family Bracket Challenge · 2025</p>
+            <p className="hero-subtitle">Family Bracket Challenge · 2026</p>
           </div>
 
           <div className="hero-stats">
@@ -100,8 +105,8 @@ export default function Home({ onJoin, player, setView, onEnableAdmin }) {
             </div>
           ) : (
             <div className="join-form">
-              <p className="join-prompt">Enter your name to pick your bracket</p>
-              <div className="input-row">
+              <p className="join-prompt">Enter your name and the family join code</p>
+              <div className="input-col">
                 <input
                   type="text"
                   className="name-input"
@@ -111,16 +116,27 @@ export default function Home({ onJoin, player, setView, onEnableAdmin }) {
                   onKeyDown={e => e.key === 'Enter' && handleSubmit()}
                   maxLength={30}
                 />
-                <button
-                  className="btn-primary"
-                  onClick={handleSubmit}
-                  disabled={loading || !name.trim()}
-                >
-                  {loading ? '...' : "Let's Go →"}
-                </button>
+                <div className="input-row">
+                  <input
+                    type="text"
+                    className="name-input"
+                    placeholder="Join code..."
+                    value={code}
+                    onChange={e => setCode(e.target.value)}
+                    onKeyDown={e => e.key === 'Enter' && handleSubmit()}
+                    maxLength={30}
+                  />
+                  <button
+                    className="btn-primary"
+                    onClick={handleSubmit}
+                    disabled={loading || !name.trim() || !code.trim()}
+                  >
+                    {loading ? '...' : "Let's Go →"}
+                  </button>
+                </div>
               </div>
               {error && <p className="error-msg">{error}</p>}
-              <p className="join-note">Returning? Just enter your name again to edit your picks.</p>
+              <p className="join-note">Returning? Just enter your name + code again to edit your picks.</p>
             </div>
           )}
 
